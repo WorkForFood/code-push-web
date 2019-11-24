@@ -9,23 +9,47 @@ import Link from '../Link';
 
 class Deployment extends Component {
   static propTypes = {
+    isFetching: PropTypes.bool,
+    rs: PropTypes.array,
     appName: PropTypes.string,
     deploymentName: PropTypes.string,
+    deployment: PropTypes.object
   };
 
   static defaultProps = {
+    isFetching: true,
     appName: '',
     deploymentName: '',
+    deployment: {},
   };
 
   constructor() {
     super();
+    this.renderRow = this.renderRow.bind(this);
   }
 
+
+  renderRow(rowData, index) {
+
+    return (<tr></tr>)
+    const pkgdata= rowData
+    return (
+      <tr>
+      <td>{pkgdata.appVersion?pkgdata.appVersion:""}</td>
+        <td>{pkgdata.appVersion}</td>
+        <td>{pkgdata.appVersion}</td>
+        <td>{pkgdata.appVersion}</td>
+        {/* <td>{JSON.stringify(pkgdata)}</td> */}
+      </tr>
+    )
+  }
 
   render() {
     const self = this;
     const tipText = '暂无数据';
+    // const tipText = JSON.stringify(this.props)
+    const packages = this.props.deployment.package;
+    //const tipText = JSON.stringify(packages)
     return (
       <div className={s.root} >
         <div className={s.container}>
@@ -50,6 +74,13 @@ class Deployment extends Component {
             </tr>
           </thead>
           <tbody>
+              {
+             _.map(packages, (pkgdata, index) => self.renderRow(pkgdata, index))
+
+            }
+            <tr>
+               <td colSpan="4" >{tipText}</td>
+             </tr>
           </tbody>
         </Table>
         </div>

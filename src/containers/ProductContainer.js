@@ -6,6 +6,7 @@ import _ from 'lodash';
 import * as usersActions from '../actions/usersActions';
 import * as authActions from '../actions/authActions';
 import * as routesActions from '../actions/routesActions';
+import * as productsActions from '../actions/productsActions';
 import Product from '../components/Product';
 
 class ProductContainer extends Component {
@@ -33,6 +34,7 @@ class ProductContainer extends Component {
       <Product
       appName={appName}
       items={_.get(deployments, `rs.${appName}`)}
+      promoteDeployment={(appName, srcDeploymentName, dstDeploymentName, packageInfo)=>actions.promoteDeployment(appName, srcDeploymentName, dstDeploymentName, packageInfo)}
       />
     );
   }
@@ -47,7 +49,7 @@ function mapStateToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch, ownProps) {
   return {
-    actions: bindActionCreators(Object.assign({}, usersActions, authActions, routesActions), dispatch)
+    actions: bindActionCreators(Object.assign({}, usersActions, authActions, routesActions, productsActions), dispatch)
   }
 }
 

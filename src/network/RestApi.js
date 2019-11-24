@@ -41,6 +41,39 @@ class RestApi {
     .then(this.jsonDecode);
   }
 
+  getDeploymentMetrics(appName, deploymentName) {
+
+    return this.get(`/apps/${appName}/deployments/${deploymentName}/metrics`)
+    .then(data=>{
+      if (data.httpCode == 200) {
+        var rs = this.jsonDecode(data);
+        if (_.get(rs, 'status') != "ERROR") {
+          return {status:"OK", httpCode: data.httpCode, results: rs};
+        } else {
+          return rs;
+        }
+      } else {
+        return {status:"ERROR", httpCode: data.httpCode, errorCode: 0, errorMessage: data.text};
+      }
+    });
+  }
+  
+  getDeploymentByName(appName, deploymentName) {
+    return this.get(`/apps/${appName}/deployments/${deploymentName}`)
+    .then(data=>{
+      if (data.httpCode == 200) {
+        var rs = this.jsonDecode(data);
+        if (_.get(rs, 'status') != "ERROR") {
+          return {status:"OK", httpCode: data.httpCode, results: rs};
+        } else {
+          return rs;
+        }
+      } else {
+        return {status:"ERROR", httpCode: data.httpCode, errorCode: 0, errorMessage: data.text};
+      }
+    });
+
+  }
   getDeployments(appName) {
     return this.get(`/apps/${appName}/deployments`)
     .then(data=>{
@@ -56,6 +89,23 @@ class RestApi {
       }
     });
   }
+
+  promoteDeployment(appName, srcDeploymentName, dstDeploymentName, packageInfo) {
+    return this.post(`/apps/${appName}/deployments/${srcDeploymentName}/promote/${dstDeploymentName}`, {packageInfo: packageInfo})
+    .then(data=>{
+      if (data.httpCode == 200) {
+        var rs = this.jsonDecode(data);
+        if (_.get(rs, 'status') != "ERROR") {
+          return {status:"OK", httpCode: data.httpCode, results: rs};
+        } else {
+          return rs;
+        }
+      } else {
+        return {status:"ERROR", httpCode: data.httpCode, errorCode: 0, errorMessage: data.text};
+      }
+    });
+  }
+
 
   addProducts(appName, os, platform) {
     return this.post('/apps', {name:appName, os:os, platform:platform})
@@ -271,6 +321,7 @@ class RestApi {
 
     return this;
   }
+
 }
 
 export default new RestApi;

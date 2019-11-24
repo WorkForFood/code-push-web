@@ -25,14 +25,18 @@ class DeploymentContainer extends Component {
       if (!_.isEmpty(location.search)) {
         path += `?${location.search}`
       }
+      // console.log(path);
       this.props.actions.setBackHistory(path);
       this.props.actions.fetchAuth(true);
     }
   }
   render() {
-    const {appName, deploymentName, actions} = this.props;
+    const {appName, deploymentName, deployment, actions} = this.props;
     return (
-      <Deployment appName={appName} deploymentName={deploymentName} />
+      <Deployment
+       appName={appName}
+       deploymentName={deploymentName}
+       deployment={deployment} />
     );
   }
 }
@@ -40,7 +44,7 @@ class DeploymentContainer extends Component {
 function mapStateToProps(state, ownProps) {
   return {
     'auth': _.get(state, 'auth', {}),
-    'products': _.get(state, 'products', {})
+    'deployments': _.get(state, 'deployments', {}), 
   };
 }
 

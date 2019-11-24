@@ -94,7 +94,99 @@ export function fetchDeployments(appName) {
     return restApi.getDeployments(appName)
     .then(data => {
       checkResponseAuth(dispatch, data);
+
       dispatch(receiveDeployments(appName, data));
+
+    });
+  };
+}
+
+
+
+export function requestDeploymentByName(appName, deploymentName) {
+  return {
+    type: types.REQUEST_PRODUCTS_DEPLOYMENT_BY_NAME,
+    payload: { appName, deploymentName }
+  }
+}
+
+export function receiveDeploymentByName(appName, deploymentName, data) {
+  return {
+    type: types.RECEIVE_PRODUCTS_DEPLOYMENT_BY_NAME,
+    payload: {appName, deploymentName, ...data}
+  }
+}
+
+export function fetchDeploymentByName(appName, deploymentName) {
+  return (dispatch) => {
+    dispatch(requestDeploymentByName(appName, deploymentName));
+    return restApi.getDeploymentByName(appName, deploymentName)
+    .then(data => {
+      checkResponseAuth(dispatch, data);
+      dispatch(receiveDeploymentByName(appName, deploymentName, data));
+    });
+  };
+}
+
+
+export function requestDeploymentMetrics(appName, deploymentName) {
+  return {
+    type: types.REQUEST_PRODUCTS_DEPLOYMENT_METRICS,
+    payload: { appName, deploymentName }
+  }
+}
+
+export function receiveDeploymentMetrics(appName, deploymentName, data) {
+  return {
+    type: types.RECEIVE_PRODUCTS_DEPLOYMENT_METRICS,
+    payload: {appName, deploymentName, ...data}
+  }
+}
+
+export function fetchDeploymentMetrics(appName, deploymentName) {
+
+  return (dispatch) => {
+    dispatch(requestDeploymentMetrics(appName, deploymentName));
+    return restApi.getDeploymentMetrics(appName, deploymentName)
+    .then(data => {
+      checkResponseAuth(dispatch, data);
+      dispatch(receiveDeploymentMetrics(appName, deploymentName, data));
+    });
+  };
+}
+
+function requestPromoteDeployment(appName, deployName, dstDeploymentName, pkgdata) {
+  return {
+    type: types.REQUEST_PROMOTE_DEPLOYMENT,
+    payload: { appName, deployName, dstDeploymentName, pkgdata}
+  }
+}
+
+function receivePromoteDeployment(appName, deployName, dstDeploymentName, pkgdata, data) {
+  return {
+    type: types.RECEIVE_PROMOTE_DEPLOYMENT,
+    payload: {appName, deployName, dstDeploymentName, pkgdata, ...data }
+  }
+}
+
+function receivePromoteDeploymentError(appName, deployName, dstDeploymentName, pkgdata, error) {
+  return {
+    type: types.RECEIVE_PROMOTE_DEPLOYMENT_ERROR,
+    payload: { appName, deployName, dstDeploymentName, pkgdata, error }
+  }
+}
+
+export function promoteDeployment(appName, deployName, dstDeploymentName, pkgdata) {
+  return (dispatch) => {
+    dispatch(requestPromoteDeployment(appName, deployName, dstDeploymentName, pkgdata));
+    return restApi.promoteDeployment(appName, deployName, dstDeploymentName, pkgdata)
+    .then(data => {
+      checkResponseAuth(dispatch, data);
+      if (_.get(data, 'status') == "OK") {
+        dispatch(receivePromoteDeployment(appName, deployName, dstDeploymentName, pkgdata, data));
+      } else {
+        dispatch(receivePromoteDeploymentError(appName, deployName, dstDeploymentName, pkgdata, {message: _.get(data, 'message')}));
+      }
     });
   };
 }

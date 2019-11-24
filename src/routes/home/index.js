@@ -25,7 +25,7 @@ export default {
         'Content-Type': 'text/html',
       },
     });
-    if (resp.status !== 200) throw new Error(resp.statusText);
+    if (resp.status !== 200) throw new Error(`error when get ${restApi.buildReadmeUrl()}, erro: ${resp.statusText}`);
     const data = await resp.text();
     const HomeContainer = await require.ensure([], require => require('../../containers/HomeContainer').default, 'home');
     return {

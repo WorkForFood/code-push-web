@@ -1,7 +1,7 @@
 
 import React from 'react';
 import LayoutContainer from '../../containers/LayoutContainer';
-import { getProducts, fetchDeployments} from '../../actions/productsActions';
+import { getProducts, fetchDeployments, fetchDeploymentByName} from '../../actions/productsActions';
 import _ from 'lodash';
 
 const apps = {
@@ -35,6 +35,11 @@ const deployments = {
     }
     var appName = _.get(params, 'appName');
     var deploymentName = _.get(params, 'deploymentName');
+    if (process.env.BROWSER) {
+      setTimeout(() => {
+        store.dispatch(fetchDeployments(appName));
+      }, 100);
+    }
     const DeploymentContainer = await require.ensure([], require => require('../../containers/DeploymentContainer').default, 'deployment');
     return {
       title: `${deploymentName} ${appName}`,
