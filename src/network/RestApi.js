@@ -3,6 +3,8 @@ import _buffer from 'buffer';
 import _ from 'lodash';
 import { common } from '../config';
 import fetch from '../core/fetch';
+import moment from 'moment';
+
 const TIMEOUT = 10000;
 
 class RestApi {
@@ -228,7 +230,14 @@ class RestApi {
   }
 
   get(uri) {
-    return fetch(this.baseURI + uri, {
+    let newUri = uri;
+    let timeparam=moment().format("YYYYMMDDHHmmss");
+    if (newUri.indexOf("?")>=0) {
+      newUri += `&time=${timeparam}`
+    } else {
+      newUri += `?time=${timeparam}`
+    }
+    return fetch(this.baseURI + newUri, {
       method: 'GET',
       headers: this.headers,
       timeout: TIMEOUT,
@@ -240,7 +249,14 @@ class RestApi {
   }
 
   post(uri, params = {}) {
-    return fetch(this.baseURI + uri, {
+    let newUri = uri;
+    let timeparam=moment().format("YYYYMMDDHHmmss");
+    if (newUri.indexOf("?")>=0) {
+      newUri += `&time=${timeparam}`
+    } else {
+      newUri += `?time=${timeparam}`
+    }
+    return fetch(this.baseURI + newUri, {
       method: 'POST',
       headers: this.headers,
       body: JSON.stringify(params),
@@ -253,7 +269,14 @@ class RestApi {
   }
 
   patch(uri, params = {}) {
-    return fetch(this.baseURI + uri, {
+    let newUri = uri;
+    let timeparam=moment().format("YYYYMMDDHHmmss");
+    if (newUri.indexOf("?")>=0) {
+      newUri += `&time=${timeparam}`
+    } else {
+      newUri += `?time=${timeparam}`
+    }
+    return fetch(this.baseURI + newUri, {
       method: 'PATCH',
       headers: this.headers,
       body: JSON.stringify(params),
@@ -266,7 +289,14 @@ class RestApi {
   }
 
   delete(uri, params={}) {
-    return fetch(this.baseURI + uri, {
+    let newUri = uri;
+    let timeparam=moment().format("YYYYMMDDHHmmss");
+    if (newUri.indexOf("?")>=0) {
+      newUri += `&time=${timeparam}`
+    } else {
+      newUri += `?time=${timeparam}`
+    }
+    return fetch(this.baseURI + newUri, {
       method: 'DELETE',
       headers: this.headers,
       body: JSON.stringify(params),

@@ -72,35 +72,36 @@ class Product extends Component {
     const deployName = _.get(rowData, 'name');
     const pkgdata = _.get(rowData, 'package');
     const dstDeploymentName = "Production";
-    const shortHash = pkgdata.packageHash&&pkgdata.packageHash.length>totalHashLen?pkgdata.packageHash.substring(0,totalHashLen/2)+"***"+pkgdata.packageHash.substring(pkgdata.packageHash.length-(totalHashLen-totalHashLen/2),pkgdata.packageHash.length):pkgdata.packageHash
+    const shortHash = pkgdata &&pkgdata.packageHash&&pkgdata.packageHash.length>totalHashLen?
+      pkgdata.packageHash.substring(0,totalHashLen/2)+"***"+pkgdata.packageHash.substring(pkgdata.packageHash.length-(totalHashLen-totalHashLen/2),pkgdata.packageHash.length)
+      :(pkgdata && pkgdata.packageHash)
     var disabled = true;
     if (!this.props.isFetching){
         disabled = false;
     }
-    const { desc, updateMeta } = pkgdata?{
-      desc: `当前版本: ${pkgdata.label}`, 
-      updateMeta: (
-        <td>
-          {`DeploymentKey:${_.get(rowData, 'key')}`}
-          <br></br>
-        {`当前版本: ${pkgdata.label}`}
-        <br></br>
-          {`发布者: ${pkgdata.releasedBy}`}
-          <br></br>
-          {`状态: ${pkgdata.isDisabled?"停用":"可用"}`}
-          <br></br>
-          {`强制升级: ${pkgdata.isMandatory?"是":"否"}`}
-          <br></br>
-          {`上传时间: ${moment(pkgdata.uploadTime).format('YYYY-MM-DD HH:mm:ss')}`}
-          <br></br>
-          {`packageHash: ${shortHash}`}
-        </td>
-      ), 
-    }: {
-      desc: "", 
-      updateMeta: (<td></td>), 
-      operation: (<td></td>)
-    }
+    const updateMeta =(
+      <td>
+        {`DeploymentKey:${_.get(rowData, 'key')}`}
+        {
+          pkgdata?(
+          <p>
+            {!pkgdata?"":`当前版本: ${pkgdata.label}`}
+            <br></br>
+            {!pkgdata?"":`发布者: ${pkgdata.releasedBy}`}
+            <br></br>
+            {!pkgdata?"":`状态: ${pkgdata.isDisabled?"停用":"可用"}`}
+            <br></br>
+            {!pkgdata?"":`强制升级: ${pkgdata.isMandatory?"是":"否"}`}
+            <br></br>
+            {!pkgdata?"":`上传时间: ${moment(pkgdata.uploadTime).format('YYYY-MM-DD HH:mm:ss')}`}
+            <br></br>
+            {!pkgdata?"":`packageHash: ${shortHash}`}
+          </p>
+          )
+          :null
+        }
+      </td>
+    )
     const operation = pkgdata && deployName != "Production" ? (
         <Button
           disabled={disabled}
