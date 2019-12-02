@@ -26,10 +26,14 @@ class ProductList extends Component {
   }
   renderRow(rowData, index) {
     const appName = _.get(rowData, 'name');
+    const os = _.get(rowData, 'os');
     return (
       <tr key={_.get(rowData, 'name')}>
         <td>
           <Link to={`/apps/${appName}`}>{appName}</Link>
+        </td>
+        <td style={{ textAlign: 'center' }}>
+          {os}
         </td>
         <td style={{ textAlign: 'left' }}>
           <ul>
@@ -91,6 +95,7 @@ class ProductList extends Component {
             <thead>
               <tr>
                 <th style={{ textAlign: 'center' }} >产品名</th>
+                <th style={{ textAlign: 'center' }} >系统</th>
                 <th style={{ textAlign: 'center' }} >成员</th>
                 <th style={{ textAlign: 'center' }} >Deployments</th>
                 <th style={{ textAlign: 'center' }} >操作</th>
