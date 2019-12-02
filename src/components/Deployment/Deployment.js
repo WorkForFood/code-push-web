@@ -10,17 +10,17 @@ import Link from '../Link';
 class Deployment extends Component {
   static propTypes = {
     isFetching: PropTypes.bool,
-    rs: PropTypes.array,
+    history: PropTypes.array,
     appName: PropTypes.string,
-    deploymentName: PropTypes.string,
-    deployment: PropTypes.object
+    deploymentName: PropTypes.string, 
   };
 
   static defaultProps = {
     isFetching: true,
     appName: '',
     deploymentName: '',
-    deployment: {},
+    history: [],
+    rs: {},
   };
 
   constructor() {
@@ -31,7 +31,6 @@ class Deployment extends Component {
 
   renderRow(rowData, index) {
 
-    return (<tr></tr>)
     const pkgdata= rowData
     return (
       <tr>
@@ -48,7 +47,7 @@ class Deployment extends Component {
     const self = this;
     const tipText = '暂无数据';
     // const tipText = JSON.stringify(this.props)
-    const packages = this.props.deployment.package;
+    const packages = this.props.history;
     //const tipText = JSON.stringify(packages)
     return (
       <div className={s.root} >

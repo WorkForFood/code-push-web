@@ -10,6 +10,8 @@ import {
   RECEIVE_ADD_PRODUCTS,
   REQUEST_PRODUCTS_DEPLOYMENTS,
   RECEIVE_PRODUCTS_DEPLOYMENTS,
+  REQUEST_PRODUCTS_DEPLOYMENT_HISTORY,
+  RECEIVE_PRODUCTS_DEPLOYMENT_HISTORY,
 } from '../actions/actionTypes';
 
 export function products(state = {}, action) {
@@ -43,6 +45,23 @@ export function deployments(state = {rs:{}}, action) {
       default :
         return state;
     }
+}
+
+export function deploymentHistory(state = {rs:{}}, action) {
+  let payload = _.get(action, 'payload');
+  switch (action.type) {
+    case REQUEST_PRODUCTS_DEPLOYMENT_HISTORY:
+        return Object.assign({}, state, {isFetching: true});
+
+    case RECEIVE_PRODUCTS_DEPLOYMENT_HISTORY:
+        var data = Object.assign({}, state, {isFetching: false});
+        var appName = _.get(payload, 'appName');
+        _.set(data, `rs.${appName}`, _.get(payload, 'results.history'));
+        return data;
+
+    default :
+      return state;
+  }
 }
 
 export function addProducts(state = {}, action) {

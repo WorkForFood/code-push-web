@@ -43,6 +43,22 @@ class RestApi {
     .then(this.jsonDecode);
   }
 
+  getDeploymentHistory(appName, deploymentName) {
+
+    return this.get(`/apps/${appName}/deployments/${deploymentName}/history`)
+    .then(data=>{
+      if (data.httpCode == 200) {
+        var rs = this.jsonDecode(data);
+        if (_.get(rs, 'status') != "ERROR") {
+          return {status:"OK", httpCode: data.httpCode, results: rs};
+        } else {
+          return rs;
+        }
+      } else {
+        return {status:"ERROR", httpCode: data.httpCode, errorCode: 0, errorMessage: data.text};
+      }
+    });
+  }
   getDeploymentMetrics(appName, deploymentName) {
 
     return this.get(`/apps/${appName}/deployments/${deploymentName}/metrics`)

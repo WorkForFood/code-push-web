@@ -155,6 +155,32 @@ export function fetchDeploymentMetrics(appName, deploymentName) {
   };
 }
 
+
+export function requestDeploymentHistory(appName, deploymentName) {
+  return {
+    type: types.REQUEST_PRODUCTS_DEPLOYMENT_HISTORY,
+    payload: { appName, deploymentName }
+  }
+}
+
+export function receiveDeploymentHistory(appName, deploymentName, data) {
+  return {
+    type: types.RECEIVE_PRODUCTS_DEPLOYMENT_HISTORY,
+    payload: {appName, deploymentName, ...data}
+  }
+}
+
+export function fetchDeploymentHistory(appName, deploymentName) {
+
+  return (dispatch) => {
+    dispatch(requestDeploymentHistory(appName, deploymentName));
+    return restApi.getDeploymentHistory(appName, deploymentName)
+    .then(data => {
+      checkResponseAuth(dispatch, data);
+      dispatch(receiveDeploymentHistory(appName, deploymentName, data));
+    });
+  };
+}
 function requestPromoteDeployment(appName, deployName, dstDeploymentName, pkgdata) {
   return {
     type: types.REQUEST_PROMOTE_DEPLOYMENT,

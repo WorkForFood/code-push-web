@@ -6,19 +6,10 @@ import _ from 'lodash';
 import * as usersActions from '../actions/usersActions';
 import * as authActions from '../actions/authActions';
 import * as routesActions from '../actions/routesActions';
+import * as productsActions from '../actions/productsActions';
 import Deployment from '../components/Deployment';
 
 class DeploymentContainer extends Component {
-  static propTypes = {
-    appName: PropTypes.string,
-    deploymentName: PropTypes.string,
-  };
-
-  static defaultProps = {
-    appName: '',
-    deploymentName: '',
-  };
-
   componentDidMount() {
     if (!_.get(this.props, 'auth.isAuth')) {
       let path = location.pathname;
@@ -31,12 +22,13 @@ class DeploymentContainer extends Component {
     }
   }
   render() {
-    const {appName, deploymentName, deployment, actions} = this.props;
+    const {appName, deploymentName, deploymentHistory} = this.props;
     return (
       <Deployment
        appName={appName}
        deploymentName={deploymentName}
-       deployment={deployment} />
+       rs={deploymentHistory}
+       history={_.get(deploymentHistory, `rs.${appName}`)} />
     );
   }
 }
@@ -44,13 +36,13 @@ class DeploymentContainer extends Component {
 function mapStateToProps(state, ownProps) {
   return {
     'auth': _.get(state, 'auth', {}),
-    'deployments': _.get(state, 'deployments', {}), 
+    'deploymentHistory': _.get(state, 'deploymentHistory', {})
   };
 }
 
 function mapDispatchToProps(dispatch, ownProps) {
   return {
-    actions: bindActionCreators(Object.assign({}, usersActions, authActions, routesActions), dispatch)
+    actions: bindActionCreators(Object.assign({}, usersActions, authActions, routesActions, productsActions), dispatch)
   }
 }
 

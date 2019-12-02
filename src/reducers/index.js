@@ -5,7 +5,7 @@ import {users, login, password} from './users';
 import {register} from './registers';
 import {auth, accessKeys} from './auth';
 import {routes} from './routes';
-import {products, addProducts, deployments} from './products';
+import {products, addProducts, deployments, deploymentHistory} from './products';
 import {msgStack} from './msgStack';
 
 const appReducer = combineReducers({
@@ -19,6 +19,7 @@ const appReducer = combineReducers({
   products,
   addProducts,
   deployments,
+  deploymentHistory, 
   msgStack,
 });
 
