@@ -6,6 +6,7 @@ import _ from 'lodash';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './Deployment.css';
 import Link from '../Link';
+import moment from 'moment'
 
 class Deployment extends Component {
   static propTypes = {
@@ -20,7 +21,6 @@ class Deployment extends Component {
     appName: '',
     deploymentName: '',
     history: [],
-    rs: {},
   };
 
   constructor() {
@@ -31,13 +31,38 @@ class Deployment extends Component {
 
   renderRow(rowData, index) {
 
+    const totalHashLen = 15;
     const pkgdata= rowData
+
+    const shortHash = pkgdata&&pkgdata.packageHash&&pkgdata.packageHash.length>totalHashLen?
+      pkgdata.packageHash.substring(0,totalHashLen/2)+"***"+pkgdata.packageHash.substring(pkgdata.packageHash.length-(totalHashLen-totalHashLen/2),pkgdata.packageHash.length)
+      :(pkgdata && pkgdata.packageHash)
+
     return (
       <tr>
-      <td>{pkgdata.appVersion?pkgdata.appVersion:""}</td>
-        <td>{pkgdata.appVersion}</td>
-        <td>{pkgdata.appVersion}</td>
-        <td>{pkgdata.appVersion}</td>
+        <td style={{ textAlign:'center' }}>{pkgdata.appVersion}</td>
+        <td style={{ textAlign:'center' }}>{pkgdata.description}</td>
+        <td style={{ textAlign:'center' }}>
+         {pkgdata?(
+          <p>
+            {`当前版本: ${pkgdata.label}`}
+            <br></br>
+            {`发布者: ${pkgdata.releasedBy}`}
+            <br></br>
+            {`状态: ${pkgdata.isDisabled?"停用":"可用"}`}
+            <br></br>
+            {`强制升级: ${pkgdata.isMandatory?"是":"否"}`}
+            <br></br>
+            {`上传时间: ${moment(pkgdata.uploadTime).format('YYYY-MM-DD HH:mm:ss')}`}
+            <br></br>
+            {`packageHash: ${shortHash}`}
+          </p>
+          )
+          :null
+         }
+        </td>
+        <td></td>
+        <td></td>
         {/* <td>{JSON.stringify(pkgdata)}</td> */}
       </tr>
     )
@@ -45,9 +70,9 @@ class Deployment extends Component {
 
   render() {
     const self = this;
-    const tipText = '暂无数据';
-    // const tipText = JSON.stringify(this.props)
+    // const tipText = '暂无数据';
     const packages = this.props.history;
+    const tipText = JSON.stringify(packages&&packages.length>0?packages[0]:{})
     //const tipText = JSON.stringify(packages)
     return (
       <div className={s.root} >
@@ -67,6 +92,7 @@ class Deployment extends Component {
           <thead>
             <tr>
               <th style={{ textAlign:'center' }} >AppVersion</th>
+              <th style={{ textAlign:'center' }} >Desc</th>
               <th style={{ textAlign:'center' }} >PackageInfo</th>
               <th style={{ textAlign:'center' }} >Install Metrics</th>
               <th style={{ textAlign:'center' }} >操作</th>
@@ -74,12 +100,12 @@ class Deployment extends Component {
           </thead>
           <tbody>
               {
-             _.map(packages, (pkgdata, index) => self.renderRow(pkgdata, index))
+            packages&&packages.length>0?_.map(packages, (pkgdata, index) => self.renderRow(pkgdata, index))
 
-            }
-            <tr>
+            :(<tr>
                <td colSpan="4" >{tipText}</td>
-             </tr>
+             </tr>)
+            }
           </tbody>
         </Table>
         </div>

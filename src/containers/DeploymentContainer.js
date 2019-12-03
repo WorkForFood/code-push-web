@@ -27,7 +27,6 @@ class DeploymentContainer extends Component {
       <Deployment
        appName={appName}
        deploymentName={deploymentName}
-       rs={deploymentHistory}
        history={_.get(deploymentHistory, `rs.${appName}`)} />
     );
   }
