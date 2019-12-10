@@ -34,7 +34,11 @@ class Deployment extends Component {
     const totalHashLen = 15;
     const pkgdata= rowData
 
-    const shortHash = pkgdata&&pkgdata.packageHash&&pkgdata.packageHash.length>totalHashLen?
+    if (!pkgdata) {
+      return ( null )
+    }
+
+    const shortHash = pkgdata.packageHash&&pkgdata.packageHash.length>totalHashLen?
       pkgdata.packageHash.substring(0,totalHashLen/2)+"***"+pkgdata.packageHash.substring(pkgdata.packageHash.length-(totalHashLen-totalHashLen/2),pkgdata.packageHash.length)
       :(pkgdata && pkgdata.packageHash)
 
@@ -42,28 +46,34 @@ class Deployment extends Component {
       <tr>
         <td style={{ textAlign:'center' }}>{pkgdata.appVersion}</td>
         <td style={{ textAlign:'center' }}>{pkgdata.description}</td>
-        <td style={{ textAlign:'center' }}>
-         {pkgdata?(
-          <p>
-            {`当前版本: ${pkgdata.label}`}
-            <br></br>
-            {`发布者: ${pkgdata.releasedBy}`}
-            <br></br>
-            {`状态: ${pkgdata.isDisabled?"停用":"可用"}`}
-            <br></br>
-            {`强制升级: ${pkgdata.isMandatory?"是":"否"}`}
-            <br></br>
-            {`上传时间: ${moment(pkgdata.uploadTime).format('YYYY-MM-DD HH:mm:ss')}`}
-            <br></br>
-            {`packageHash: ${shortHash}`}
-          </p>
-          )
-          :null
-         }
-        </td>
-        <td></td>
-        <td></td>
-        {/* <td>{JSON.stringify(pkgdata)}</td> */}
+          <td style={{ textAlign:'center' }}>
+            <tr>
+              <td style={{ textAlign:'center' }} >当前版本</td>
+              <td style={{ textAlign:'right' }} >{pkgdata.label}</td>
+            </tr>
+            <tr>
+              <td style={{ textAlign:'center' }}  >发布者</td>
+              <td style={{ textAlign:'right' }} >{pkgdata.releasedBy}</td>
+            </tr>
+            <tr>
+              <td style={{ textAlign:'center' }}  >状态</td>
+              <td style={{ textAlign:'right' }} >{pkgdata.isDisabled?"停用":"可用"}</td>
+              <td>操作</td>
+            </tr>
+            <tr>
+              <td style={{ textAlign:'center' }}  >强制升级</td>
+              <td style={{ textAlign:'right' }} >{pkgdata.isMandatory?"是":"否"}</td>
+              <td>操作</td>
+            </tr>
+            <tr>
+              <td style={{ textAlign:'center' }}  >上传时间</td>
+              <td style={{ textAlign:'right' }} >{moment(pkgdata.uploadTime).format('YYYY-MM-DD HH:mm:ss')}</td>
+            </tr>
+            <tr>
+              <td style={{ textAlign:'center' }} >packageHash</td>
+              <td style={{ textAlign:'right' }} >{shortHash}</td>
+            </tr>
+          </td>
       </tr>
     )
   }
@@ -95,13 +105,11 @@ class Deployment extends Component {
               <th style={{ textAlign:'center' }} >Desc</th>
               <th style={{ textAlign:'center' }} >PackageInfo</th>
               <th style={{ textAlign:'center' }} >Install Metrics</th>
-              <th style={{ textAlign:'center' }} >操作</th>
             </tr>
           </thead>
           <tbody>
               {
             packages&&packages.length>0?_.map(packages, (pkgdata, index) => self.renderRow(pkgdata, index))
-
             :(<tr>
                <td colSpan="4" >{tipText}</td>
              </tr>)

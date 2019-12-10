@@ -11,7 +11,7 @@ import Product from '../components/Product';
 
 class ProductContainer extends Component {
   static propTypes = {
-    appName: PropTypes.string
+    appName: PropTypes.string,
   };
 
   static defaultProps = {
@@ -29,12 +29,16 @@ class ProductContainer extends Component {
     }
   }
   render() {
-    const {deployments, appName, actions } = this.props;
+    const {deployments, appName, actions, showModal } = this.props;
     return (
       <Product
       appName={appName}
       items={_.get(deployments, `rs.${appName}`)}
+      showModal={_.get(deployments, 'showModal')}
+      currentDeployment={_.get(deployments, 'currentDeployment')}
       promoteDeployment={(appName, srcDeploymentName, dstDeploymentName, packageInfo)=>actions.promoteDeployment(appName, srcDeploymentName, dstDeploymentName, packageInfo)}
+      handleShowModal={(appName, srcDeploymentName, dstDeploymentName, pkgdata)=>actions.showPopPromoteDeployment(appName, srcDeploymentName, dstDeploymentName, pkgdata)}
+      handleCloseModal={()=>actions.closePopPromoteDeployment()}
       />
     );
   }

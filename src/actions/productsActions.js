@@ -74,6 +74,17 @@ export function addProducts(appName, os, platform) {
   };
 }
 
+export function showPopPromoteDeployment(appName, deployName, dstDeploymentName, pkgdata) {
+  return {
+    type: types.SHOW_POP_PROMOTE_DEPLOYMENT, 
+    payload: {appName: appName, deployName: deployName, dstDeploymentName: dstDeploymentName, pkgdata: pkgdata},
+  };
+}
+
+export function closePopPromoteDeployment() {
+  return {type: types.CLOSE_POP_PROMOTE_DEPLOYMENT};
+}
+
 export function requestDeployments(appName) {
   return {
     type: types.REQUEST_PRODUCTS_DEPLOYMENTS,
@@ -101,8 +112,6 @@ export function fetchDeployments(appName) {
   };
 }
 
-
-
 export function requestDeploymentByName(appName, deploymentName) {
   return {
     type: types.REQUEST_PRODUCTS_DEPLOYMENT_BY_NAME,
@@ -127,7 +136,6 @@ export function fetchDeploymentByName(appName, deploymentName) {
     });
   };
 }
-
 
 export function requestDeploymentMetrics(appName, deploymentName) {
   return {

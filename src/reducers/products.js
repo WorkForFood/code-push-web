@@ -12,6 +12,8 @@ import {
   RECEIVE_PRODUCTS_DEPLOYMENTS,
   REQUEST_PRODUCTS_DEPLOYMENT_HISTORY,
   RECEIVE_PRODUCTS_DEPLOYMENT_HISTORY,
+  SHOW_POP_PROMOTE_DEPLOYMENT,
+  CLOSE_POP_PROMOTE_DEPLOYMENT,
 } from '../actions/actionTypes';
 
 export function products(state = {}, action) {
@@ -33,6 +35,12 @@ export function products(state = {}, action) {
 export function deployments(state = {rs:{}}, action) {
     let payload = _.get(action, 'payload');
     switch (action.type) {
+
+      case SHOW_POP_PROMOTE_DEPLOYMENT:
+        return Object.assign({}, state, {currentDeployment: payload, showModal: true});
+      case CLOSE_POP_PROMOTE_DEPLOYMENT:
+        return Object.assign({}, state, {showModal: false});
+
       case REQUEST_PRODUCTS_DEPLOYMENTS:
         return Object.assign({}, state, {isFetching: true});
 
