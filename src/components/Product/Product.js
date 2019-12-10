@@ -39,6 +39,7 @@ class Product extends Component {
     const tipText = '暂无数据';
     const showPromoteDlg = self.props.showModal;
     const handleClose = self.props.handleCloseModal;
+    const promoteDeployment = self.props.promoteDeployment;
     const current = self.props.currentDeployment;
     const pkgdata = current.pkgdata;
     const shortHash = pkgdata &&pkgdata.packageHash&&pkgdata.packageHash.length>totalHashLen?
@@ -78,7 +79,7 @@ class Product extends Component {
               }
           </Modal.Body>
           <Modal.Footer>
-            <Button style={{color: 'red'}} variant="secondary" onClick={handleClose} >
+            <Button style={{color: 'red'}} variant="secondary" onClick={()=>{promoteDeployment(current.appName, current.deployName, current.dstDeploymentName, current.pkgdata)}} >
               Confirm Promote
             </Button>
             <Button variant="primary" onClick={handleClose} >
