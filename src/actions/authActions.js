@@ -102,9 +102,9 @@ export function reomveAccessKey(name) {
     return restApi.removeAccessKey(name)
     .then(data => {
       if (_.get(data,'status') !== "OK") {
-        dispatch(addShowMsg("删除密钥失败:"+ _.get(data, 'errorMessage'), "danger"));
+        dispatch(addShowMsg("Не удалось удалить ключ:"+ _.get(data, 'errorMessage'), "danger"));
       } else {
-        dispatch(addShowMsg("删除密钥成功:" + name, "success"));
+        dispatch(addShowMsg("Ключ удален успешно:" + name, "success"));
       }
       dispatch(receiveRemoveAccessKey(data));
     });
@@ -130,9 +130,9 @@ export function patchAccessKey(name, friendlyName=null, ttl=0) {
     return restApi.patchAccessKey(name, friendlyName, ttl)
     .then(data => {
       if (_.get(data,'status') !== "OK") {
-        dispatch(addShowMsg("修改密钥失败:"+ _.get(data, 'errorMessage'), "danger"));
+        dispatch(addShowMsg("Не удалось изменить ключ:"+ _.get(data, 'errorMessage'), "danger"));
       } else {
-        dispatch(addShowMsg("修改密钥成功:" + friendlyName, "success"));
+        dispatch(addShowMsg("Ключ изменен успешно:" + friendlyName, "success"));
       }
       dispatch(receivePatchAccessKey(name, data));
     }).catch(function(e){
@@ -160,9 +160,9 @@ export function createAccessKey() {
     return restApi.createAccessKey()
     .then(data => {
       if (_.get(data,'status') !== "OK") {
-        dispatch(addShowMsg("创建密钥失败:"+ _.get(data, 'errorMessage'), "danger"));
+        dispatch(addShowMsg("Не удалось создать ключ:"+ _.get(data, 'errorMessage'), "danger"));
       } else {
-        dispatch(addShowMsg("创建密钥成功:" + _.get(data, 'results.accessKey.friendlyName'), "success"));
+        dispatch(addShowMsg("Ключ успешно создан:" + _.get(data, 'results.accessKey.friendlyName'), "success"));
       }
       dispatch(openPopShowKey(_.get(data, 'results.accessKey.name')));
       dispatch(receiveCreateAccessKey(data));

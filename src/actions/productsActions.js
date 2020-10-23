@@ -64,9 +64,9 @@ export function addProducts(appName, os, platform) {
     .then(data => {
       checkResponseAuth(dispatch, data);
       if (_.get(data, 'status') !== "OK") {
-        dispatch(addShowMsg("创建应用: "+_.get(data,'errorMessage'), "danger"));
+        dispatch(addShowMsg("Ошибка: "+_.get(data,'errorMessage'), "danger"));
       } else {
-        dispatch(addShowMsg("创建 "+_.get(data,'results.app.name')+" 应用成功", "success"));
+        dispatch(addShowMsg("Приложение "+_.get(data,'results.app.name')+" добавлено", "success"));
       }
       dispatch(receiveAddProducts(data));
       dispatch(getProducts());

@@ -101,7 +101,7 @@ class PopAddApp extends Component {
           <Modal.Title>Добавить приложение</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <FormGroup style={{display: 'inline-block',width: '40%'}} validationState={this.props.isShowNameError ? `error` : null}>
+          <FormGroup validationState={this.props.isShowNameError ? `error` : null}>
             <ControlLabel>Имя приложения</ControlLabel>
             <OverlayTrigger trigger={["hover"]} placement="bottom" overlay={popoverFocus}>
             <FormControl
@@ -113,7 +113,7 @@ class PopAddApp extends Component {
             </OverlayTrigger>
             <FormControl.Feedback />
           </FormGroup>
-          <FormGroup style={{display: 'inline-block',width: '20%',paddingLeft: 15}} validationState={this.props.isShowOSError ? `error` : null}>
+          <FormGroup validationState={this.props.isShowOSError ? `error` : null}>
             <ControlLabel>Платформа</ControlLabel>
             <FormControl
               componentClass="select"
@@ -126,7 +126,7 @@ class PopAddApp extends Component {
               <option value="Windows" >Windows</option>
             </FormControl>
           </FormGroup>
-          <FormGroup style={{display: 'inline-block',width: '20%',paddingLeft: 15}} validationState={this.props.isShowPlatformError ? `error` : null}>
+          <FormGroup validationState={this.props.isShowPlatformError ? `error` : null}>
             <ControlLabel>Типы</ControlLabel>
             <FormControl
               componentClass="select"

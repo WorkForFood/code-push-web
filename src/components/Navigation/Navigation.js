@@ -54,7 +54,7 @@ class Navigation extends Component {
     return (
       <Navbar.Collapse>
         <Nav onSelect={this.handleSelect}>
-          <NavItem eventKey={1} href="#">Управление приложением</NavItem>
+          <NavItem eventKey={1} href="#">Приложения</NavItem>
           <NavItem eventKey={2} href="#">Ключи доступа</NavItem>
         </Nav>
         <Nav onSelect={this.handleSelect} pullRight>
