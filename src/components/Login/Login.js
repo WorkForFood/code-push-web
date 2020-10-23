@@ -55,25 +55,25 @@ class Login extends Component {
   render() {
     return (
       <div style={{height:650, paddingLeft: 20, paddingRight:20 }}>
-        <Panel header="登录" style={{ maxWidth:350, marginLeft:"auto", marginRight: "auto" }}>
+        <Panel header="Авторизация" style={{ maxWidth:350, marginLeft:"auto", marginRight: "auto" }}>
           <Form>
             <FormGroup>
-              <ControlLabel>邮箱地址</ControlLabel>
+              <ControlLabel>Логин|Email</ControlLabel>
               <FormControl
                 onChange={this.setInputAccount}
                 value={this.props.account}
                 type="email"
-                placeholder="请输入邮箱地址"
+                placeholder="Логин|Email"
                 autoFocus
                 />
             </FormGroup>
             <FormGroup>
-              <ControlLabel>密码</ControlLabel>
+              <ControlLabel>Пароль</ControlLabel>
               <FormControl
                 onChange={this.setInputPassword}
                 value={this.props.password}
                 type="password"
-                placeholder="请输入登录密码"
+                placeholder="Пожалуйста, введите пароль"
               />
             </FormGroup>
             <FormGroup style={{ paddingTop: 20 }}>
@@ -88,12 +88,12 @@ class Login extends Component {
                 onClick={this.submit}
                 disabled={this.props.isFetching}
               >
-              {this.props.isFetching ? '登录中...' : '登录'}
+              {this.props.isFetching ? 'Вход в систему...' : 'Авторизация'}
               </Button>
             </FormGroup>
             <FormGroup style={{ paddingTop: 28 }}>
-              <span style={{ marginRight: 20 }}>还没有账号?</span>
-              <Link to="/register">立即注册</Link>
+              <span style={{ marginRight: 20 }}>Нет аккаунта?</span>
+              <Link to="/register">Зарегистрироваться</Link>
             </FormGroup>
           </Form>
         </Panel>

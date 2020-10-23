@@ -28,7 +28,7 @@ class PopShowKey extends Component {
     return (
       <Modal show={this.props.showModal} onHide={this.close}>
         <Modal.Header closeButton>
-          <Modal.Title>创建密钥成功</Modal.Title>
+          <Modal.Title>Создать ключ</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <FormGroup validationState="success">
@@ -46,7 +46,7 @@ class PopShowKey extends Component {
               readOnly
               type="text"
             />
-            <HelpBlock>复制上面的密钥, 然后关闭弹框</HelpBlock>
+            <HelpBlock>Скопируйте ключ затем закройте всплывающее окно</HelpBlock>
           </FormGroup>
         </Modal.Body>
           <Modal.Footer>

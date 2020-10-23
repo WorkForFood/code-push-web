@@ -74,13 +74,13 @@ class ProductList extends Component {
 
   render() {
     const self = this;
-    const tipText = '暂无数据';
+    const tipText = 'Нет данных';
     return (
       <div className={s.root}>
         <div className={s.container}>
           <Breadcrumb>
             <Breadcrumb.Item active>
-            应用列表
+            Список приложений
           </Breadcrumb.Item>
           </Breadcrumb>
           <Col style={{ marginBottom: '20px' }}>
@@ -88,17 +88,17 @@ class ProductList extends Component {
               onClick={this.props.popAddApp}
               bsStyle="primary"
             >
-          添加应用
+          Добавить приложение
           </Button>
           </Col>
           <Table striped bordered condensed hover responsive>
             <thead>
               <tr>
-                <th style={{ textAlign: 'center' }} >产品名</th>
-                <th style={{ textAlign: 'center' }} >系统</th>
-                <th style={{ textAlign: 'center' }} >成员</th>
+                <th style={{ textAlign: 'center' }} >Наименование</th>
+                <th style={{ textAlign: 'center' }} >Система</th>
+                <th style={{ textAlign: 'center' }} >Платформа</th>
                 <th style={{ textAlign: 'center' }} >Deployments</th>
-                <th style={{ textAlign: 'center' }} >操作</th>
+                <th style={{ textAlign: 'center' }} >Активно</th>
               </tr>
             </thead>
             <tbody>

@@ -15,7 +15,7 @@ import _ from 'lodash';
 
 const popoverFocus = (
   <Popover id="popover-trigger-focus">
-    只能包含字母和数字
+    Может содержать только буквы и цифры
   </Popover>
 );
 class PopAddApp extends Component {
@@ -98,11 +98,11 @@ class PopAddApp extends Component {
     return (
       <Modal show={this.props.showModal} onHide={this.close}>
         <Modal.Header closeButton>
-          <Modal.Title>添加App</Modal.Title>
+          <Modal.Title>Добавить приложение</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <FormGroup style={{display: 'inline-block',width: '40%'}} validationState={this.props.isShowNameError ? `error` : null}>
-            <ControlLabel>App名字</ControlLabel>
+            <ControlLabel>Имя приложения</ControlLabel>
             <OverlayTrigger trigger={["hover"]} placement="bottom" overlay={popoverFocus}>
             <FormControl
               type="text"
@@ -114,26 +114,26 @@ class PopAddApp extends Component {
             <FormControl.Feedback />
           </FormGroup>
           <FormGroup style={{display: 'inline-block',width: '20%',paddingLeft: 15}} validationState={this.props.isShowOSError ? `error` : null}>
-            <ControlLabel>平台</ControlLabel>
+            <ControlLabel>Платформа</ControlLabel>
             <FormControl
               componentClass="select"
               value={this.props.os}
               onChange={this.setSelect}
             >
-              <option value="" >选择平台</option>
+              <option value="" >Выберите платформу</option>
               <option value="iOS" >iOS</option>
               <option value="Android" >Android</option>
               <option value="Windows" >Windows</option>
             </FormControl>
           </FormGroup>
           <FormGroup style={{display: 'inline-block',width: '20%',paddingLeft: 15}} validationState={this.props.isShowPlatformError ? `error` : null}>
-            <ControlLabel>类型</ControlLabel>
+            <ControlLabel>Типы</ControlLabel>
             <FormControl
               componentClass="select"
               value={this.props.platform}
               onChange={this.setPlatformSelect}
             >
-              <option value="" >选择类型</option>
+              <option value="" >Выберите тип</option>
               <option value="React-Native" >React-Native</option>
               <option value="Cordova" >Cordova</option>
             </FormControl>
@@ -143,8 +143,8 @@ class PopAddApp extends Component {
           </FormGroup>
         </Modal.Body>
           <Modal.Footer>
-            <Button onClick={this.close}>关闭</Button>
-            <Button onClick={this.onSubmit} disabled={this.props.isOnSubmiting ? true : false} >确定</Button>
+            <Button onClick={this.close}>Отмена</Button>
+            <Button onClick={this.onSubmit} disabled={this.props.isOnSubmiting ? true : false} >Добавить</Button>
           </Modal.Footer>
       </Modal>
     )

@@ -48,29 +48,29 @@ class Deployment extends Component {
         <td style={{ textAlign:'center' }}>{pkgdata.description}</td>
           <td style={{ textAlign:'center' }}>
             <tr>
-              <td style={{ textAlign:'center' }} >当前版本</td>
+              <td style={{ textAlign:'center' }} >Текущая версия</td>
               <td style={{ textAlign:'right' }} >{pkgdata.label}</td>
             </tr>
             <tr>
-              <td style={{ textAlign:'center' }}  >发布者</td>
+              <td style={{ textAlign:'center' }}  >Автор</td>
               <td style={{ textAlign:'right' }} >{pkgdata.releasedBy}</td>
             </tr>
             <tr>
-              <td style={{ textAlign:'center' }}  >状态</td>
+              <td style={{ textAlign:'center' }}  >Активен</td>
               <td style={{ textAlign:'right' }} >{pkgdata.isDisabled?"停用":"可用"}</td>
               <td>操作</td>
             </tr>
             <tr>
-              <td style={{ textAlign:'center' }}  >强制升级</td>
+              <td style={{ textAlign:'center' }}  >Обязательный</td>
               <td style={{ textAlign:'right' }} >{pkgdata.isMandatory?"是":"否"}</td>
               <td>操作</td>
             </tr>
             <tr>
-              <td style={{ textAlign:'center' }}  >上传时间</td>
+              <td style={{ textAlign:'center' }}  >Загружено</td>
               <td style={{ textAlign:'right' }} >{moment(pkgdata.uploadTime).format('YYYY-MM-DD HH:mm:ss')}</td>
             </tr>
             <tr>
-              <td style={{ textAlign:'center' }} >packageHash</td>
+              <td style={{ textAlign:'center' }} >Hash пакета</td>
               <td style={{ textAlign:'right' }} >{shortHash}</td>
             </tr>
           </td>
@@ -89,7 +89,7 @@ class Deployment extends Component {
         <div className={s.container}>
         <Breadcrumb>
           <Breadcrumb.Item active={true}>
-            <Link to="/apps">应用列表</Link>
+            <Link to="/apps">Список приложений</Link>
           </Breadcrumb.Item>
           <Breadcrumb.Item active={true}>
             <Link to={`/apps/${this.props.appName}`}>{this.props.appName}</Link>
@@ -101,10 +101,10 @@ class Deployment extends Component {
         <Table striped bordered condensed hover responsive>
           <thead>
             <tr>
-              <th style={{ textAlign:'center' }} >AppVersion</th>
-              <th style={{ textAlign:'center' }} >Desc</th>
-              <th style={{ textAlign:'center' }} >PackageInfo</th>
-              <th style={{ textAlign:'center' }} >Install Metrics</th>
+              <th style={{ textAlign:'center' }} >Версия</th>
+              <th style={{ textAlign:'center' }} >Описание</th>
+              <th style={{ textAlign:'center' }} >Информация о пакете</th>
+              <th style={{ textAlign:'center' }} >Метрика</th>
             </tr>
           </thead>
           <tbody>

@@ -14,9 +14,8 @@ function StepDone() {
     <Form style={{  maxWidth:350, marginLeft:"auto", marginRight: "auto" }}>
       <FormGroup style={{ textAlign:'center' }}>
         <div>
-          <span>恭喜！您已经注册成功，快去</span>
-          <Link to="/login">登录</Link>
-          <span>吧</span>
+          <span>Поздравляю! Вы успешно зарегистрировались!</span>
+          <Link to="/login">Авторизоаться</Link>
         </div>
       </FormGroup>
     </Form>

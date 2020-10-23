@@ -39,23 +39,23 @@ class Navigation extends Component {
 
   render() {
     let loginView = (
-      <NavItem eventKey={4} href="#">登录</NavItem>
+      <NavItem eventKey={4} href="#">Авторизация</NavItem>
     );
     let registerView = (
-      <NavItem eventKey={5} href="#">注册</NavItem>
+      <NavItem eventKey={5} href="#">Авторизован</NavItem>
     );
     let personNav = (
-      <NavDropdown eventKey={3} title="个人设置" id="basic-nav-dropdown">
-        <MenuItem eventKey={3.1}>修改密码</MenuItem>
+      <NavDropdown eventKey={3} title="Настройки" id="basic-nav-dropdown">
+        <MenuItem eventKey={3.1}>Изменить пароль</MenuItem>
         <MenuItem divider />
-        <MenuItem eventKey={3.2}>安全退出</MenuItem>
+        <MenuItem eventKey={3.2}>Выйти</MenuItem>
       </NavDropdown>
     );
     return (
       <Navbar.Collapse>
         <Nav onSelect={this.handleSelect}>
-          <NavItem eventKey={1} href="#">应用管理</NavItem>
-          <NavItem eventKey={2} href="#">我的密钥</NavItem>
+          <NavItem eventKey={1} href="#">Управление приложением</NavItem>
+          <NavItem eventKey={2} href="#">Мои ключи</NavItem>
         </Nav>
         <Nav onSelect={this.handleSelect} pullRight>
           {_.get(this.props, 'isAuth') === true ? personNav : null}

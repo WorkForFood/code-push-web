@@ -14,9 +14,9 @@ export const analytics = {
 
 export const common = {
   api: {
-    // URL: 'http://localhost:3000', // production code-push-server address
-    // devURL: 'http://localhost:3000', // development code-push-server address
-    URL: 'http://cpuat.iqdii.com', // production code-push-server address
-    devURL: 'http://cpuat.iqdii.com', // development code-push-server address
+    URL: 'http://localhost:1488', // production code-push-server address
+    devURL: 'http://localhost:1488', // development code-push-server address
+    //URL: 'http://cpuat.iqdii.com', // production code-push-server address
+    //devURL: 'http://cpuat.iqdii.com', // development code-push-server address
   },
 };

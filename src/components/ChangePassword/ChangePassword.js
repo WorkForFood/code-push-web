@@ -64,16 +64,16 @@ class ChangePassword extends Component {
     let oldPasswordTips = '';
     if (!this.props.oldPassword) {
       isValidate = false;
-      oldPasswordTips = '请您输入旧密码';
+      oldPasswordTips = 'Пожалуйста, введите ваш старый пароль';
     }
     let newPasswordTips = '';
     let newPasswordConfirmTips = '';
     if (this.props.newPassword.length < 6) {
-      newPasswordTips = '请您输入6～22位字符或数字'
+      newPasswordTips = 'Введите новый пароль от 6 до 22 символов'
     }
     if (!_.eq(this.props.newPassword, this.props.newPasswordConfirm)) {
       isValidate = false;
-      newPasswordConfirmTips = '两次输入的密码不一致'
+      newPasswordConfirmTips = 'Введенные поля не совпадают'
     }
     var disabled = true;
     if (!this.props.isFetching && isValidate){
@@ -81,15 +81,15 @@ class ChangePassword extends Component {
     }
     return (
       <div style={{height:650, paddingLeft: 20, paddingRight:20 }}>
-        <Panel header="修改密码" style={{ maxWidth:350, marginLeft:"auto", marginRight: "auto" }}>
+        <Panel header="Изменить пароль" style={{ maxWidth:350, marginLeft:"auto", marginRight: "auto" }}>
           <Form>
             <FormGroup>
-              <ControlLabel>原密码</ControlLabel>
+              <ControlLabel>Старый пароль</ControlLabel>
               <FormControl
                 onChange={this.setOldPassword}
                 type="password"
                 value={this.props.oldPassword}
-                placeholder="请输入原密码"
+                placeholder="Пожалуйста, введите старый пароль"
                 onBlur={()=>this.setState({field1: true})}
                 autoFocus
                 />
@@ -104,12 +104,12 @@ class ChangePassword extends Component {
               </div>
             </FormGroup>
             <FormGroup>
-              <ControlLabel>新密码</ControlLabel>
+              <ControlLabel>Новый пароль</ControlLabel>
               <FormControl
                 onChange={this.setNewPassword}
                 type="password"
                 value={this.props.newPassword}
-                placeholder="请您输入新的密码"
+                placeholder="Пожалуйста, введите новый пароль"
                 onBlur={()=>this.setState({field2: true})}
               />
             </FormGroup>
@@ -123,12 +123,12 @@ class ChangePassword extends Component {
               </div>
             </FormGroup>
              <FormGroup>
-              <ControlLabel>确认新密码</ControlLabel>
+              <ControlLabel>Подтвердите новый пароль</ControlLabel>
               <FormControl
                 onChange={this.setNewPasswordConfirm}
                 type="password"
                 value={this.props.newPasswordConfirm}
-                placeholder="请您再次输入新的密码"
+                placeholder="Пожалуйста, введите новый пароль еще раз"
                 onBlur={()=>this.setState({field3: true})}
               />
             </FormGroup>

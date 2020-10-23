@@ -45,12 +45,12 @@ class StepOne extends Component {
     return (
       <Form style={{maxWidth: 350, marginLeft:"auto", marginRight: "auto"}}>
         <FormGroup>
-          <ControlLabel>邮箱地址</ControlLabel>
+          <ControlLabel>Адрес электронной почты</ControlLabel>
           <FormControl
             onChange={this.setInputEmail}
             value={this.props.email}
             type="email"
-            placeholder="请输入邮箱地址"
+            placeholder="Адрес электронной почты"
             autoComplete="off"
             autoFocus
             />
@@ -72,11 +72,11 @@ class StepOne extends Component {
             }}
             disabled={disabled}
           >
-          下一步
+          Следующий шаг
           </Button>
         </FormGroup>
         <FormGroup style={{ paddingTop: 28, textAlign: 'center' }}>
-          <Link to="/login">已有帐号</Link>
+          <Link to="/login">Существующий аккаунт</Link>
         </FormGroup>
       </Form>
     );

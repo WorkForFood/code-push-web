@@ -36,7 +36,7 @@ class Product extends Component {
   render() {
     const totalHashLen = 15;
     const self = this;
-    const tipText = '暂无数据';
+    const tipText = 'Нет данных';
     const showPromoteDlg = self.props.showModal;
     const handleClose = self.props.handleCloseModal;
     const promoteDeployment = self.props.promoteDeployment;
@@ -55,24 +55,24 @@ class Product extends Component {
           </Modal.Header>
           <Modal.Body style={{ textAlign:'center' }} >
           <p style={{textAlign:'left'}}>
-            Deployment 源 <text style={{color: 'red'}}>({current.deployName}</text>) 版本信息
+            Источник развертывания <text style={{color: 'red'}}>({current.deployName}</text>) Информация о версии
           </p>
               {
                 pkgdata?(
                 <p >
-                  {!pkgdata?"":`当前版本: ${pkgdata.label}`}
+                  {!pkgdata?"":`текущая версия: ${pkgdata.label}`}
                   <br></br>
-                  {!pkgdata?"":`描述: ${pkgdata.description}`}
+                  {!pkgdata?"":`описание: ${pkgdata.description}`}
                   <br></br>
-                  {!pkgdata?"":`发布者: ${pkgdata.releasedBy}`}
+                  {!pkgdata?"":`Автор: ${pkgdata.releasedBy}`}
                   <br></br>
-                  {!pkgdata?"":`状态: ${pkgdata.isDisabled?"停用":"可用"}`}
+                  {!pkgdata?"":`Активно: ${pkgdata.isDisabled?"Нет":"Да"}`}
                   <br></br>
-                  {!pkgdata?"":`强制升级: ${pkgdata.isMandatory?"是":"否"}`}
+                  {!pkgdata?"":`Обязательно: ${pkgdata.isMandatory?"Да":"Нет"}`}
                   <br></br>
-                  {!pkgdata?"":`上传时间: ${moment(pkgdata.uploadTime).format('YYYY-MM-DD HH:mm:ss')}`}
+                  {!pkgdata?"":`Время: ${moment(pkgdata.uploadTime).format('YYYY-MM-DD HH:mm:ss')}`}
                   <br></br>
-                  {!pkgdata?"":`packageHash: ${shortHash}`}
+                  {!pkgdata?"":`Hash пакета: ${shortHash}`}
                 </p>
                 )
                 :null
@@ -90,7 +90,7 @@ class Product extends Component {
 
         <Breadcrumb>
           <Breadcrumb.Item active={true}>
-            <Link to="/apps">应用列表</Link>
+            <Link to="/apps">Список приложений</Link>
           </Breadcrumb.Item>
           <Breadcrumb.Item active={true}>
             {this.props.appName}
@@ -99,11 +99,11 @@ class Product extends Component {
         <Table striped bordered condensed hover responsive>
           <thead>
             <tr>
-              <th style={{ textAlign:'center' }} >Deployments</th>
-              {/* <th style={{ textAlign:'center' }} >DeploymentKey</th> */}
-              {/* <th style={{ textAlign:'center' }} >Description</th> */}
-              <th style={{ textAlign:'center' }} >Update Metadata</th>
-              <th style={{ textAlign:'center' }} >操作</th>
+              <th style={{ textAlign:'center' }} >Обновление</th>
+              <th style={{ textAlign:'center' }} >Ключ обновления</th>
+              <th style={{ textAlign:'center' }} >Описание</th>
+              <th style={{ textAlign:'center' }} >Metadata</th>
+              <th style={{ textAlign:'center' }} >Активно</th>
             </tr>
           </thead>
           <tbody>
@@ -142,19 +142,19 @@ class Product extends Component {
         {
           pkgdata?(
           <p>
-            {!pkgdata?"":`当前版本: ${pkgdata.label}`}
+            {!pkgdata?"":`текущая версия: ${pkgdata.label}`}
             <br></br>
-            {!pkgdata?"":`描述: ${pkgdata.description}`}
+            {!pkgdata?"":`описание: ${pkgdata.description}`}
             <br></br>
-            {!pkgdata?"":`发布者: ${pkgdata.releasedBy}`}
+            {!pkgdata?"":`Автор: ${pkgdata.releasedBy}`}
             <br></br>
-            {!pkgdata?"":`状态: ${pkgdata.isDisabled?"停用":"可用"}`}
+            {!pkgdata?"":`Активно: ${pkgdata.isDisabled?"Нет":"Да"}`}
             <br></br>
-            {!pkgdata?"":`强制升级: ${pkgdata.isMandatory?"是":"否"}`}
+            {!pkgdata?"":`Обязательно: ${pkgdata.isMandatory?"Да":"Нет"}`}
             <br></br>
-            {!pkgdata?"":`上传时间: ${moment(pkgdata.uploadTime).format('YYYY-MM-DD HH:mm:ss')}`}
+            {!pkgdata?"":`Время: ${moment(pkgdata.uploadTime).format('YYYY-MM-DD HH:mm:ss')}`}
             <br></br>
-            {!pkgdata?"":`packageHash: ${shortHash}`}
+            {!pkgdata?"":`Hash пакета: ${shortHash}`}
           </p>
           )
           :null

@@ -72,9 +72,9 @@ class AccessKeys extends Component {
 
   render() {
     const self = this;
-    let tipText = '暂无数据';
+    let tipText = 'Нет данных';
     if (this.props.isFetching) {
-      tipText = '加载数据中...';
+      tipText = 'Загрузка данных...';
     }
     return (
       <div className={s.root}>
@@ -86,7 +86,7 @@ class AccessKeys extends Component {
         <div className={s.container}>
           <Breadcrumb>
             <Breadcrumb.Item active>
-            密钥列表
+            Список ключей
           </Breadcrumb.Item>
           </Breadcrumb>
           <Col style={{ marginBottom: '20px' }}>
@@ -103,12 +103,12 @@ class AccessKeys extends Component {
           <Table striped bordered condensed hover responsive>
             <thead>
               <tr>
-                <th style={{ textAlign: 'center' }} >名字</th>
-                <th style={{ textAlign: 'center' }} >创建者</th>
-                <th style={{ textAlign: 'center' }} >类型</th>
-                <th style={{ textAlign: 'center' }} >创建时间</th>
-                <th style={{ textAlign: 'center' }} >过期时间</th>
-                <th style={{ textAlign: 'center' }} >操作</th>
+                <th style={{ textAlign: 'center' }} >Имя</th>
+                <th style={{ textAlign: 'center' }} >Создатель</th>
+                <th style={{ textAlign: 'center' }} >Тип</th>
+                <th style={{ textAlign: 'center' }} >Время создания</th>
+                <th style={{ textAlign: 'center' }} >Годен до</th>
+                <th style={{ textAlign: 'center' }} >Активен</th>
               </tr>
             </thead>
             <tbody>
