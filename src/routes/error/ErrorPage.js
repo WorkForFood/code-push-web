@@ -34,8 +34,9 @@ class ErrorPage extends React.Component {
 
     return (
       <div>
-        <h1>Error</h1>
-        <p>Sorry, a critical error occurred on this page.</p>
+        <h1>Ошибка</h1>
+        <p>В данный момент эта страница недоступна, удалена или не существует.</p>
+        <p>При повторении ошибки просьба сообщить администратору о проблеме.</p>
       </div>
     );
   }

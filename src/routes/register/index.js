@@ -13,7 +13,7 @@ export default {
 
     const RegisterContainer = await require.ensure([], require => require('../../containers/RegisterContainer').default, 'register');
     return {
-      title: '注册',
+      title: 'Регистрация',
       chunk: 'register',
       component: <Layout><RegisterContainer /></Layout>,
     };

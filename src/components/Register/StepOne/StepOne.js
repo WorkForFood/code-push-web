@@ -76,7 +76,7 @@ class StepOne extends Component {
           </Button>
         </FormGroup>
         <FormGroup style={{ paddingTop: 28, textAlign: 'center' }}>
-          <Link to="/login">Существующий аккаунт</Link>
+          <Link to="/login">Авторизоваться</Link>
         </FormGroup>
       </Form>
     );

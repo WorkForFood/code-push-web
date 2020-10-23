@@ -16,10 +16,10 @@ class NavStep extends Component {
   render() {
     let self = this;
     let navArr = [
-      {key: 1, text: 'Заполните Email'},
-      {key: 2, text: 'Подтвердите Email'},
+      {key: 1, text: 'Регистрация'},
+      {key: 2, text: 'Подтверждение'},
       {key: 3, text: 'Установка пароля'},
-      {key: 4, text: 'Сохранение'},
+      {key: 4, text: 'Готово'},
     ]
     return (
       <ul className={cx(s.progress,s.clearfix)}>

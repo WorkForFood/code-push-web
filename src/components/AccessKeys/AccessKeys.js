@@ -63,7 +63,7 @@ class AccessKeys extends Component {
             onClick={() => { self.props.removeKey(_.get(rowData, 'friendlyName')); }}
             bsStyle="danger"
           >
-          移除
+          Удалить
         </Button>
         </td>
       </tr>
@@ -97,7 +97,7 @@ class AccessKeys extends Component {
               bsStyle="primary"
               disabled={!!this.props.isCreating}
             >
-              创建key
+              Генерировать ключ
             </Button>
           </Col>
           <Table striped bordered condensed hover responsive>

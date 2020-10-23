@@ -12,7 +12,7 @@ const users = {
     }
     const ChangePasswordContainer = await require.ensure([], require => require('../../containers/ChangePasswordContainer').default, 'changePassword');
     return {
-      title: '修改密码 － 个人设置',
+      title: 'Смена пароля',
       chunk: 'changePassword',
       component: <LayoutContainer><ChangePasswordContainer /></LayoutContainer>,
     };
@@ -30,7 +30,7 @@ const settings = {
     }
     const ChangePasswordContainer = await require.ensure([], require => require('../../containers/ChangePasswordContainer').default, 'changePassword');
     return {
-      title: '修改密码 － 个人设置',
+      title: 'Смена пароля',
       chunk: 'changePassword',
       component: <LayoutContainer><ChangePasswordContainer /></LayoutContainer>,
     };

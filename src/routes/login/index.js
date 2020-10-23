@@ -11,7 +11,7 @@ const login = {
     }
     const LoginContainer = await require.ensure([], require => require('../../containers/LoginContainer').default, 'login');
     return {
-      title: '登录',
+      title: 'Авторизация',
       chunk: 'login',
       component: <Layout><LoginContainer /></Layout>,
     };
@@ -25,7 +25,7 @@ const logout = {
 
   async action() {
     return {
-      title: '退出',
+      title: 'Выход',
       component: <Layout><LogoutContainer /></Layout>,
     };
   },

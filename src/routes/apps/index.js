@@ -16,7 +16,7 @@ const apps = {
     }
     const ProductListContainer = await require.ensure([], require => require('../../containers/ProductListContainer').default, 'apps');
     return {
-      title: '应用管理',
+      title: 'Список приложений',
       chunk: 'apps',
       component: <LayoutContainer><ProductListContainer /></LayoutContainer>,
     };
@@ -61,7 +61,7 @@ const appDetails = {
     }
     const ProductContainer = await require.ensure([], require => require('../../containers/ProductContainer').default, 'product');
     return {
-      title: `${appName} 详情`,
+      title: `${appName} - подробнее`,
       chunk: 'product',
       component: <LayoutContainer><ProductContainer appName={appName} /></LayoutContainer>,
     };

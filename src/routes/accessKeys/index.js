@@ -14,7 +14,7 @@ export default {
     }
     const AccessKeysContainer = await require.ensure([], require => require('../../containers/AccessKeysContainer').default, 'accessKeys');
     return {
-      title: '我的密钥',
+      title: 'Ключи доступа',
       chunk: 'accessKeys',
       component: <LayoutContainer><AccessKeysContainer /></LayoutContainer>,
     };

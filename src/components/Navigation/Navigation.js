@@ -42,7 +42,7 @@ class Navigation extends Component {
       <NavItem eventKey={4} href="#">Авторизация</NavItem>
     );
     let registerView = (
-      <NavItem eventKey={5} href="#">Авторизован</NavItem>
+      <NavItem eventKey={5} href="#">Регистрация</NavItem>
     );
     let personNav = (
       <NavDropdown eventKey={3} title="Настройки" id="basic-nav-dropdown">
@@ -55,7 +55,7 @@ class Navigation extends Component {
       <Navbar.Collapse>
         <Nav onSelect={this.handleSelect}>
           <NavItem eventKey={1} href="#">Управление приложением</NavItem>
-          <NavItem eventKey={2} href="#">Мои ключи</NavItem>
+          <NavItem eventKey={2} href="#">Ключи доступа</NavItem>
         </Nav>
         <Nav onSelect={this.handleSelect} pullRight>
           {_.get(this.props, 'isAuth') === true ? personNav : null}
