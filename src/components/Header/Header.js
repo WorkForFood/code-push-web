@@ -23,11 +23,11 @@ class Header extends Component {
 
   render() {
     return (
-      <Navbar style={{fontWeight:400}} inverse collapseOnSelect>
+      <Navbar style={{fontWeight:400, borderRadius:'0px'}} inverse collapseOnSelect>
         <Navbar.Header>
           <Navbar.Brand>
           <Link className={s.brand} to="/">
-            <span>CodePush Server</span>
+            <span>OTA сервер</span>
           </Link>
           </Navbar.Brand>
           <Navbar.Toggle />

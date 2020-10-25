@@ -10,12 +10,28 @@
 import React from 'react';
 import fetch from '../../core/fetch';
 import LayoutContainer from '../../containers/LayoutContainer';
+import { getProducts, fetchDeployments, fetchDeploymentHistory} from '../../actions/productsActions';
 import restApi from '../../network/RestApi';
 
 export default {
 
   path: '/',
 
+  async action({ store }) {
+    if (process.env.BROWSER) {
+      setTimeout(() => {
+        store.dispatch(getProducts());
+      }, 100);
+    }
+    const ProductListContainer = await require.ensure([], require => require('../../containers/ProductListContainer').default, 'apps');
+    return {
+      title: 'Сервер удаленных обновлений',
+      chunk: 'home',
+      component: <LayoutContainer><ProductListContainer /></LayoutContainer>,
+    };
+  },
+
+  /*
   async action() {
     const resp = await fetch(restApi.buildReadmeUrl(), {
       method: 'get',
@@ -34,5 +50,6 @@ export default {
       component: <LayoutContainer><HomeContainer html={data} /></LayoutContainer>,
     };
   },
+  */
 
 };

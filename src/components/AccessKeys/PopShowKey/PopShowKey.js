@@ -50,7 +50,7 @@ class PopShowKey extends Component {
           </FormGroup>
         </Modal.Body>
           <Modal.Footer>
-            <Button onClick={this.close}>关闭</Button>
+            <Button onClick={this.close}>Закрыть</Button>
           </Modal.Footer>
       </Modal>
     )

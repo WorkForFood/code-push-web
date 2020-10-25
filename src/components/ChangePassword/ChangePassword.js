@@ -158,7 +158,7 @@ class ChangePassword extends Component {
                   self.props.submit();
                 }}
               >
-              确认
+              Сменить
               </Button>
             </FormGroup>
           </Form>

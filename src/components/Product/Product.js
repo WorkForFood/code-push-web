@@ -103,7 +103,7 @@ class Product extends Component {
               <th style={{ textAlign:'center' }} >Ключ обновления</th>
               <th style={{ textAlign:'center' }} >Описание</th>
               <th style={{ textAlign:'center' }} >Metadata</th>
-              <th style={{ textAlign:'center' }} >Активно</th>
+              <th style={{ textAlign:'center' }} > </th>
             </tr>
           </thead>
           <tbody>
@@ -138,13 +138,12 @@ class Product extends Component {
     }
     const updateMeta =(
       <td>
-        {`DeploymentKey:${_.get(rowData, 'key')}`}
         {
           pkgdata?(
           <p>
-            {!pkgdata?"":`текущая версия: ${pkgdata.label}`}
+            {!pkgdata?"":`Текущая версия: ${pkgdata.label}`}
             <br></br>
-            {!pkgdata?"":`описание: ${pkgdata.description}`}
+            {!pkgdata?"":`Описание: ${pkgdata.description}`}
             <br></br>
             {!pkgdata?"":`Автор: ${pkgdata.releasedBy}`}
             <br></br>
@@ -162,6 +161,7 @@ class Product extends Component {
       </td>
     )
     const operation = pkgdata && deployName != "Production" ? (
+      <td>
         <Button
           disabled={disabled}
           onClick={()=>{
@@ -171,21 +171,23 @@ class Product extends Component {
             handleShow(appName, deployName, dstDeploymentName, pkgdata);
           }}
         >
-          Promote
+          В релиз
         </Button>
+      </td>
       ) 
       :
       (<td></td>)
+    const description = _.get(rowData, 'description');
     return (
       <tr key={index}>
         <td style={deployName === 'Production' ? { color: 'green' } : null} >
           <Link style={deployName === 'Production' ? { color: 'green' } : { color: 'grey' }} to={`/apps/${this.props.appName}/${deployName}`}>{deployName}</Link>
         </td>
-        {/* <td style={{ textAlign: 'left' }}>
+        <td style={{ textAlign: 'left' }}>
           {_.get(rowData, 'key')}
-        </td> */}
-        {/* <td>{desc}</td> */}
-        {updateMeta}
+        </td>
+        <td>{description != "" ? description : "-"}</td>
+        {updateMeta != null ? updateMeta : "-"}
         {operation}
       </tr>
     );

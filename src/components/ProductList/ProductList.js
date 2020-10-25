@@ -27,6 +27,7 @@ class ProductList extends Component {
   renderRow(rowData, index) {
     const appName = _.get(rowData, 'name');
     const os = _.get(rowData, 'os');
+    const platform = _.get(rowData, 'platform');
     return (
       <tr key={_.get(rowData, 'name')}>
         <td>
@@ -35,19 +36,22 @@ class ProductList extends Component {
         <td style={{ textAlign: 'center' }}>
           {os}
         </td>
-        <td style={{ textAlign: 'left' }}>
-          <ul>
+        <td style={{ textAlign: 'center' }}>
+          {platform}
+        </td>
+        <td style={{ textAlign: 'center' }}>
+          <ul style={{padding: '0px'}}>
             {
             _.map(_.get(rowData, 'collaborators'), (item, email) => (
               <li key={email}>
                 {email}
                 <span className={s.permission}>
-                    (<em>{_.get(item, 'permission')}</em>)
+                    (<em>{_.get(item, 'permission') == "Owner" ? "Владелец" : "Пользователь"}</em>)
                   </span>
                 {
                     _.get(item, 'isCurrentAccount') ?
                       <span className={cx(s.label, s.labelSuccess)}>
-                      it's you
+                      Вы
                     </span>
                     : null
                   }
@@ -57,7 +61,7 @@ class ProductList extends Component {
           </ul>
         </td>
         <td>
-          <ul>
+          <ul style={{padding: '0px'}}>
             {
             _.map(_.get(rowData, 'deployments'), (item, email) => (
               <li key={email} style={item === 'Production' ? { color: 'green' } : null} >
@@ -67,7 +71,6 @@ class ProductList extends Component {
           }
           </ul>
         </td>
-        <td />
       </tr>
     );
   }
@@ -97,8 +100,8 @@ class ProductList extends Component {
                 <th style={{ textAlign: 'center' }} >Наименование</th>
                 <th style={{ textAlign: 'center' }} >Система</th>
                 <th style={{ textAlign: 'center' }} >Платформа</th>
-                <th style={{ textAlign: 'center' }} >Deployments</th>
-                <th style={{ textAlign: 'center' }} >Активно</th>
+                <th style={{ textAlign: 'center' }} >Пользователь</th>
+                <th style={{ textAlign: 'center' }} >Деплой</th>
               </tr>
             </thead>
             <tbody>
